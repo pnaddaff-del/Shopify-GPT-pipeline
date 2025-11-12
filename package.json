@@ -1,0 +1,13 @@
+{
+  "name": "shopify-gpt-pipeline",
+  "version": "0.1.0",
+  "type": "module",
+  "private": true,
+  "scripts": { "run": "node src/ingest.js" },
+  "dependencies": {
+    "googleapis": "^131.0.0",
+    "node-fetch": "^3.3.2",
+    "form-data": "^4.0.0"
+  }
+}
+
