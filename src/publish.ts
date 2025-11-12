@@ -14,8 +14,9 @@ export async function uploadToVectorStore(
     purpose: "assistants",
   });
 
-  // Attach the file to an existing vector store
-  await client.beta.vectorStores.files.create(vectorStoreId, {
+  // Attach the file to the vector store (compatible with OpenAI v6+)
+  // @ts-ignore – the type definitions may lag behind the live API
+  await client.beta.vector_stores.files.create(vectorStoreId, {
     file_id: file.id,
   });
 
