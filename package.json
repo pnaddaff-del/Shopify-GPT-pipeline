@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "type": "module",
   "private": true,
-  "scripts": { "run": "node src/ingest.js" },
+  "scripts": {
+    "run": "node src/ingest.js",
+    "build": "echo 'No build step required'"
+  },
   "dependencies": {
     "googleapis": "^131.0.0",
     "node-fetch": "^3.3.2",
