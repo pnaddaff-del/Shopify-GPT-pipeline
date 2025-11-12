@@ -1,14 +1,9 @@
-import duckdb from "duckdb";
+// Temporary stub to skip native DuckDB build issues on Render.
+// Replace this later with DuckDB-WASM or a working native build.
 
 export async function csvToParquet(csvPath: string, parquetPath: string) {
-  const db = new duckdb.Database(":memory:");
-  const conn = db.connect();
-  await conn.run(
-    `CREATE OR REPLACE TABLE t AS SELECT * FROM read_csv_auto('${csvPath}', SAMPLE_SIZE=-1);`
-  );
-  await conn.run(
-    `COPY t TO '${parquetPath}' (FORMAT PARQUET, COMPRESSION 'ZSTD');`
-  );
-  await conn.close();
+  console.log(`Skipping DuckDB conversion: ${csvPath} → ${parquetPath}`);
+  // Just copy the file to mimic conversion output.
+  const fs = await import("fs/promises");
+  await fs.copyFile(csvPath, parquetPath);
 }
-
