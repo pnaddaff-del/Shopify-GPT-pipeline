@@ -8,15 +8,17 @@ export async function uploadToVectorStore(
   vectorStoreId: string,
   meta: Record<string, string>
 ) {
+  // Upload file
   const file = await client.files.create({
     file: fs.createReadStream(localPath),
     purpose: "assistants",
-    metadata: meta,
   });
-  await client.vectorStores.files.create({
-    vector_store_id: vectorStoreId,
+
+  // Attach the file to an existing vector store
+  await client.beta.vectorStores.files.create(vectorStoreId, {
     file_id: file.id,
   });
+
+  console.log(`✅ Uploaded ${localPath} to vector store ${vectorStoreId}`);
   return file.id;
 }
-
